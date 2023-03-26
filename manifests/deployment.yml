@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: documentsservice 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: documentsservice
+  template:
+    metadata:
+      labels:
+        app: documentsservice 
+    spec:
+      containers:
+        - name: documentsservice 
+          image: containerregistrygrh.azurecr.io/documentsservice
+          ports:
+          - containerPort: 80
