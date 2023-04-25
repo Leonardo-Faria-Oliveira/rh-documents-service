@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model DocumentModels{
+  id String @id
+  title String
+  text String
+  fields String
+  digitalSignature Boolean
+  active Boolean @default(true)
+  documentType DocumentTypes @relation(fields: [typeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  typeId String
+}
+
+model DocumentTypes{
+  id String @id
+  name String
+  content String
+  active Boolean @default(true)
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @default(now())
+  documentModels DocumentModels[]
+}
+
+model GeneratedDocuments{
+  id String @id
+  title String
+  text String
+  type Boolean @default(true)
+  documentDate DateTime
+  createdAt DateTime? @default(now())
+  employeeId String
+
+  @@index([employeeId])
+
+}
+
