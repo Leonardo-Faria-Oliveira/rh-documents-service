@@ -9,7 +9,7 @@ interface CreateDocumentTypeRequest {
 }
 
 //Admins response interface, is what we can return to user when he creates an admin, but in domain layer
-interface CreateDocumentTypesResponse {
+interface CreateDocumentTypeResponse {
   documentType: DocumentTypesProps;
 }
 
@@ -20,7 +20,7 @@ export class CreateDocumentType {
 
   async execute(
     request: CreateDocumentTypeRequest,
-  ): Promise<CreateDocumentTypesResponse> {
+  ): Promise<CreateDocumentTypeResponse> {
     const { name, content } = request;
 
     //Verify and throws errors

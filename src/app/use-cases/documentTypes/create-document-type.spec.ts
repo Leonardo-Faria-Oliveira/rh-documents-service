@@ -1,4 +1,4 @@
-import { InMemoryDocumentTypesRepository } from '@test/repositories/in-memory-document-type-repository';
+import { InMemoryDocumentTypesRepository } from '@test/repositories/in-memory-document-types-repository';
 import { CreateDocumentType } from './create-document-type';
 
 describe('Create a document type', () => {

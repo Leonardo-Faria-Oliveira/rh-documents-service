@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 
 //Document models principal interface, we use to create and list.
 export interface DocumentModelsProps {
+  id?: string;
   title: string;
   text: string;
   fields: string;

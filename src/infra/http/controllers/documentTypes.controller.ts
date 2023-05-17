@@ -2,7 +2,7 @@ import { CreateDocumentType } from '@app/use-cases/documentTypes/create-document
 import { Body, Controller, Post, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { CreateDocumentTypeBody } from '../dtos/create-document-type-body';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from '../utils/auth-guard';
 
 @Controller('v1')
 export class DocumentTypesController {
@@ -14,8 +14,10 @@ export class DocumentTypesController {
   @UseGuards(AuthGuard)
   @Post('document/types')
   async create(@Body() body: CreateDocumentTypeBody, @Res() res: Response) {
-    const { name, contentObject } = body;
-    const content = JSON.stringify(contentObject);
+    const { name, contentArray } = body;
+    const content = JSON.stringify(contentArray);
+    console.log(content);
+    console.log(JSON.parse(content));
     try {
       await this.createDocumentType.execute({
         name,
