@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { DocumentModelsRepository } from '@app/repositories/documentModelsRepository';
 import { DocumentModelsProps } from '@app/entities/documentModels';
+import { PrismaDocumentModelsMapper } from '../mappers/prisma-document-models-mapper';
 
 @Injectable()
 export class PrismaDocumentModelsRepository
@@ -20,6 +21,32 @@ export class PrismaDocumentModelsRepository
         digitalSignature: documentModels.digitalSignature,
         typeId: documentModels.typeId,
       },
+    });
+  }
+
+  async findMany(): Promise<DocumentModelsProps[]> {
+    const documentModels = await this.prismaService.documentModels.findMany({
+      select: {
+        id: true,
+        fields: true,
+        text: true,
+        digitalSignature: true,
+        active: true,
+        title: true,
+        createdAt: true,
+        updatedAt: true,
+        typeId: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      where: {
+        active: true,
+      },
+    });
+
+    return documentModels.map((documentModel) => {
+      return PrismaDocumentModelsMapper.toDomain(documentModel);
     });
   }
 }

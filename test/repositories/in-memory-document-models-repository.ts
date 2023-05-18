@@ -9,4 +9,8 @@ export class InMemoryDocumentModelsRepository
   async create(documentModel: DocumentModelsProps) {
     this.documentModels.push(documentModel);
   }
+
+  async findMany(): Promise<DocumentModelsProps[]> {
+    return this.documentModels;
+  }
 }

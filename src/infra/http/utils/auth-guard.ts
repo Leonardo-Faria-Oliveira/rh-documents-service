@@ -13,27 +13,30 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    console.log(request);
+    // console.log(request);
     const token = this.extractTokenFromHeader(request);
+    console.log(token);
     if (!token) {
       throw new UnauthorizedException();
     }
-    try {
-      // console.log(token);
-      // console.log(process.env.secret);
-      await this.jwtService.verifyAsync(token, {
-        secret: process.env.secret,
-      });
-    } catch {
-      throw new UnauthorizedException();
-    }
+    // try {
+    // console.log(token);
+    // console.log(process.env.secret);
+    await this.jwtService.verifyAsync(token, {
+      secret: process.env.secret,
+    });
+    // } catch {
+    //   console.log("droga");
+    //   throw new UnauthorizedException();
+    // }
     return true;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
-    console.log('request.headers.authentication');
+    // console.log(request.headers.authentication);
     const [type, token] =
       request.headers.authentication?.toString().split(' ') ?? [];
+    // console.log(token);
     return type === 'Bearer' ? token : undefined;
   }
 }

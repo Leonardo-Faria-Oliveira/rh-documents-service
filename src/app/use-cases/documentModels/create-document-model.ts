@@ -39,7 +39,7 @@ export class CreateDocumentModel {
     if (!text) {
       throw new Error('Document model should have a text');
     }
-    if (!digitalSignature) {
+    if (digitalSignature === null || digitalSignature === undefined) {
       throw new Error('Document model should have a signature');
     }
     if (!typeId) {

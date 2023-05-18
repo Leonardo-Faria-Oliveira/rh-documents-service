@@ -5,11 +5,18 @@ import { CreateDocumentType } from '@app/use-cases/documentTypes/create-document
 import { DocumentModelsController } from './controllers/documentModels.controller';
 import { CreateDocumentModel } from '@app/use-cases/documentModels/create-document-model';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from './utils/auth-guard';
+import { FindDocumentTypes } from '@app/use-cases/documentTypes/find-many';
+import { FindDocumentModels } from '@app/use-cases/documentModels/find-many';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [DocumentTypesController, DocumentModelsController],
-  providers: [CreateDocumentType, CreateDocumentModel, JwtService],
+  providers: [
+    CreateDocumentType,
+    CreateDocumentModel,
+    JwtService,
+    FindDocumentTypes,
+    FindDocumentModels,
+  ],
 })
 export class HTTPModule {}

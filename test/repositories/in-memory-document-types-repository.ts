@@ -10,6 +10,10 @@ export class InMemoryDocumentTypesRepository
     this.documentTypes.push(documentType);
   }
 
+  async findMany(): Promise<DocumentTypesProps[]> {
+    return this.documentTypes;
+  }
+
   //   async findMany() {
   //     return this.companies;
   //   }
