@@ -1,5 +1,5 @@
 import { CreateDocumentType } from '@app/use-cases/documentTypes/create-document-type';
-import { Body, Controller, Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { CreateDocumentTypeBody } from '../dtos/create-document-type-body';
 import { AuthGuard } from '../utils/auth-guard';
@@ -38,6 +38,7 @@ export class DocumentTypesController {
 
   //Path to get the document types
   @UseGuards(AuthGuard)
+  @Get('document/types')
   async findMany(@Res() res: Response) {
     try {
       const { documenTypes } = await this.findManyDocumentTypes.execute();

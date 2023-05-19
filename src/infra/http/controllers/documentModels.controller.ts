@@ -1,5 +1,5 @@
 import { CreateDocumentModel } from '@app/use-cases/documentModels/create-document-model';
-import { Body, Controller, Post, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { Response } from 'express';
 import { AuthGuard } from '../utils/auth-guard';
 import { CreateDocumentModelBody } from '../dtos/create-document-model-body';
@@ -40,6 +40,7 @@ export class DocumentModelsController {
 
   //Path to get the document models
   @UseGuards(AuthGuard)
+  @Get('document/models')
   async findMany(@Res() res: Response) {
     try {
       const { documenModels } = await this.findManyDocumentModels.execute();
