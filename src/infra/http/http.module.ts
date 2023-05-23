@@ -6,7 +6,7 @@ import { DocumentModelsController } from './controllers/documentModels.controlle
 import { CreateDocumentModel } from '@app/use-cases/documentModels/create-document-model';
 import { JwtService } from '@nestjs/jwt';
 import { FindDocumentTypes } from '@app/use-cases/documentTypes/find-many';
-import { FindDocumentModels } from '@app/use-cases/documentModels/find-many';
+import { FindManyByTypeId } from '@app/use-cases/documentModels/find-many-by-type-id';
 
 @Module({
   imports: [DatabaseModule],
@@ -16,7 +16,7 @@ import { FindDocumentModels } from '@app/use-cases/documentModels/find-many';
     CreateDocumentModel,
     JwtService,
     FindDocumentTypes,
-    FindDocumentModels,
+    FindManyByTypeId,
   ],
 })
 export class HTTPModule {}

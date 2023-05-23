@@ -40,6 +40,10 @@ export class DocumentModels {
     };
   }
 
+  public get id(): string {
+    return this._id;
+  }
+
   public get title(): string {
     return this.documentModelsProps.title;
   }

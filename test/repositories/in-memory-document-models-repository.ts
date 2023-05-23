@@ -10,7 +10,10 @@ export class InMemoryDocumentModelsRepository
     this.documentModels.push(documentModel);
   }
 
-  async findMany(): Promise<DocumentModelsProps[]> {
-    return this.documentModels;
+  async findManyByTypeId(typeId: string): Promise<DocumentModelsProps[]> {
+    const documenModels = this.documentModels.filter((model) => {
+      return model.typeId === typeId ? true : false;
+    });
+    return documenModels;
   }
 }

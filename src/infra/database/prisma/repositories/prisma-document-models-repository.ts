@@ -11,7 +11,7 @@ export class PrismaDocumentModelsRepository
   constructor(private prismaService: PrismaService) {}
 
   async create(documentModels: DocumentModelsProps): Promise<void> {
-    // console.log(documentTypes.id);
+    console.log(documentModels.id);
     await this.prismaService.documentModels.create({
       data: {
         id: documentModels.id,
@@ -24,7 +24,7 @@ export class PrismaDocumentModelsRepository
     });
   }
 
-  async findMany(): Promise<DocumentModelsProps[]> {
+  async findManyByTypeId(typeId: string): Promise<DocumentModelsProps[]> {
     const documentModels = await this.prismaService.documentModels.findMany({
       select: {
         id: true,
@@ -41,6 +41,7 @@ export class PrismaDocumentModelsRepository
         createdAt: 'desc',
       },
       where: {
+        typeId: typeId,
         active: true,
       },
     });
