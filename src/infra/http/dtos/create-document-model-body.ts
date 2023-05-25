@@ -1,5 +1,10 @@
 import { Length } from 'class-validator';
 
+export default interface Fields {
+  tag: string;
+  value: string;
+}
+
 //This class validate the body as a middleware
 export class CreateDocumentModelBody {
   @Length(5, 150, {
@@ -9,7 +14,7 @@ export class CreateDocumentModelBody {
 
   text: string[];
 
-  fields: string[];
+  fields: Fields[];
 
   digitalSignature: boolean;
 
