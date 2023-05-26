@@ -20,7 +20,7 @@ export class FindManyByTypeId {
     const documentModels = await this.documentModelsRepository.findManyByTypeId(
       typeId,
     );
-
+    // console.log(documentModels[0])
     return {
       documentModels,
     };

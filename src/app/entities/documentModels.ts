@@ -1,5 +1,10 @@
 import { randomUUID } from 'crypto';
 
+export interface TypeInModel {
+  name: string;
+  content: string;
+}
+
 //Document models principal interface, we use to create and list.
 export interface DocumentModelsProps {
   id?: string;
@@ -11,6 +16,7 @@ export interface DocumentModelsProps {
   updatedAt?: Date;
   active?: boolean;
   typeId: string;
+  type?: TypeInModel;
 }
 
 //Update document models interface
@@ -29,8 +35,9 @@ export interface DocumentModelsUpdateProps {
 export class DocumentModels {
   private _id?: string;
   private documentModelsProps: DocumentModelsProps;
+  private _type?: TypeInModel;
 
-  constructor(props: DocumentModelsProps, id?: string) {
+  constructor(props: DocumentModelsProps, id?: string, type?: TypeInModel) {
     this._id = id ?? randomUUID();
     this.documentModelsProps = {
       ...props,
@@ -38,10 +45,15 @@ export class DocumentModels {
       updatedAt: new Date(),
       active: props.active ?? true,
     };
+    this._type = type ?? null;
   }
 
   public get id(): string {
     return this._id;
+  }
+
+  public get type(): TypeInModel {
+    return this._type;
   }
 
   public get title(): string {

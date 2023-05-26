@@ -55,8 +55,14 @@ export class DocumentModelsController {
   ) {
     try {
       const { documentModels } = await this.findManyByTypeId.execute(id);
+      const typeData = documentModels[0];
+      console.log(typeData.type);
       return res.status(200).json({
         count: documentModels.length,
+        type: {
+          name: typeData.type.name,
+          content: JSON.parse(typeData.type.content),
+        },
         documentModels: documentModels.map((documenModel) =>
           DocumentModelsViewModule.manyDocumentModelsToHTTP(documenModel),
         ),

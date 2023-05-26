@@ -36,6 +36,12 @@ export class PrismaDocumentModelsRepository
         createdAt: true,
         updatedAt: true,
         typeId: true,
+        documentType: {
+          select: {
+            name: true,
+            content: true,
+          },
+        },
       },
       orderBy: {
         createdAt: 'desc',
